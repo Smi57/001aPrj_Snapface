@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FaceSnap } from '../models/face-snap.model';
 import { FaceSnapsService } from '../services/face-snap.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export const snapsInit: number = 0;
 
@@ -17,10 +18,15 @@ export class FaceSnapComponent implements OnInit {
   //snapsInit: number = 0;
   buttonText: string = 'Snap ?';
   buttonTextInit: string = 'Oh Snap!';
-  constructor(private faceSnapsService: FaceSnapsService) { }
+  constructor(private faceSnapsService: FaceSnapsService,
+    private router: Router) { }
 
   ngOnInit() {
     //this.buttonText = this.buttonTextInit;
+  }
+
+  onViewFaceSnap() {
+    this.router.navigateByUrl(`facesnaps/${this.faceSnap.id}`);
   }
 
   onAddSnap() {
